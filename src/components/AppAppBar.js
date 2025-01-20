@@ -156,7 +156,7 @@ export default function AppAppBar() {
                 <Link to="home" smooth={true} duration={500} offset={-70}>
                   <MenuItem onClick={toggleDrawer(false)}>Home</MenuItem>
                 </Link>
-                <Link to="products" smooth={true} duration={500} offset={-70}>
+                <Link to="productSlider" smooth={true} duration={500} offset={-70}>
                   <MenuItem onClick={toggleDrawer(false)}>Products</MenuItem>
                 </Link>
                 <Link to="features" smooth={true} duration={500} offset={-70}>

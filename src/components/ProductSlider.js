@@ -26,25 +26,23 @@ const ProductSlider = () => {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-    const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+    const isMedium = useMediaQuery(theme.breakpoints.up('md'));
 
     const visibleCards = useMemo(() => {
-        if (isMobile) return 2;
-        if (isTablet) return 3;
-        return 3;
-    }, [isMobile, isTablet]);
+        if (isMobile) return 1;
+        if (isMedium) return 4;
+        return 2; // Default for tablet
+    }, [isMobile, isMedium]);
 
-    const customTheme = useMemo(() => {
-        return createTheme({
-            cssVariables: {
-                colorSchemeSelector: 'data-mui-color-scheme',
-                cssVarPrefix: 'template',
-            },
-            components: {
-                ...surfacesCustomizations,
-            },
-        });
-    }, []);
+    const customTheme = useMemo(() => createTheme({
+        cssVariables: {
+            colorSchemeSelector: 'data-mui-color-scheme',
+            cssVarPrefix: 'template',
+        },
+        components: {
+            ...surfacesCustomizations,
+        },
+    }), []);
 
     useEffect(() => {
         const productsRef = ref(db, 'products');
@@ -84,27 +82,25 @@ const ProductSlider = () => {
         );
     };
 
+    const cardWidth = 100 / visibleCards;
+
     return (
         <Box sx={{
             width: '100%',
-            maxWidth: { xs: '100%', sm: '100%', md: "100%" },
-            mx: 'auto', 
             position: 'relative',
             overflow: 'hidden',
-            mt: { xs: 2, sm: 3, md: 5 },
-            mb: { xs: 2, sm: 3, md: 5 },
-            px: { xs: 2, sm: 3, md: 4 }
+            mt: 3,
+            mb: 3,
+            px: { xs: 1, md: 2 }
         }}>
             <Typography
                 variant="h2"
                 sx={{
-                    mt: { xs: 1, sm: 2 },
-                    mb: { xs: 2, sm: 3, md: 4 },
-                    fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.5rem' },
+                    mb: 3,
+                    fontSize: { xs: '1.5rem', md: '2rem' },
                     fontFamily: "sans-serif",
                     textAlign: "center"
                 }}
-                gutterBottom
             >
                 Our Latest Products
             </Typography>
@@ -113,93 +109,87 @@ const ProductSlider = () => {
                 <Box
                     sx={{
                         display: 'flex',
+                        mx: -1,
                         transition: 'transform 0.5s ease-in-out',
-                        transform: `translateX(-${(currentIndex * 42) / visibleCards}%)`,
-                        width: `${(products.length * 100) / visibleCards}%`,
+                        transform: `translateX(-${currentIndex * cardWidth}%)`,
                     }}
                 >
                     {products.map((product) => (
                         <Card
                             key={product.id}
-                            sx={[
-                                {
-                                    // flex: `0 0 calc(100%})`,
-                                    boxSizing: 'border-box',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    padding: { xs: 0.5, sm: 1 },
-                                    margin: { xs: 0.5, sm: 1 },
-                                    border: '1px solid #ccc',
-                                    borderRadius: '8px',
-                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                                },
-                                surfacesCustomizations.MuiCard.styleOverrides.root({ theme: customTheme }),
-                            ]}
+                            sx={{
+                                flex: `0 0 ${cardWidth}%`,
+                                boxSizing: 'border-box',
+                                // mx: 1,
+                                borderRadius: 2,
+                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: '480px' // Fixed height for all cards
+                            }}
                         >
                             <CardMedia
                                 component="img"
-                                height="300"
                                 image={product.image}
                                 alt={product.name}
+                                height="240"
                                 sx={{
-                                    objectFit: 'cover',
-                                    width: '100%'
+                                    // height: '240px',
+                                    // objectFit: 'cover'
                                 }}
                             />
-                            <CardContent
-                                sx={[
-                                    {
-                                        textAlign: 'center',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        p: { xs: 1.5, sm: 2 },
-                                    },
-                                    surfacesCustomizations.MuiCardContent.styleOverrides.root,
-                                ]}
-                            >
-                                <Typography
-                                    variant="h6"
-                                    sx={{
-                                        mb: 1,
-                                        fontSize: { xs: '0.780rem', sm: '1.25rem' }
-                                    }}
-                                >
-                                    {product.name}
-                                </Typography>
-                                <Typography
-                                    color="text.secondary"
-                                    sx={{
-                                        mb: { xs: 1, sm: 2 },
-                                        fontSize: { xs: '0.875rem', sm: '1rem' }
-                                    }}
-                                >
-                                    Rs. {product.price}
-                                </Typography>
-                                <Typography
-                                    color="text.secondary"
-                                    sx={{
-                                        mb: { xs: 1, sm: 2 },
-                                        fontSize: { xs: '0.800rem', sm: '0.875rem' }
-                                    }}
-                                >
-                                    Size {product.size || 'N/A'}
-                                </Typography>
+                            <CardContent sx={{
+                                textAlign: 'center',
+                                p: 2,
+                                flexGrow: 1,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-between', // Ensures even spacing
+                                minHeight: '210px' // Fixed content height
+                            }}>
+                                <Box sx={{ mb: 'auto' }}> {/* Wrapper for product info */}
+                                    <Typography
+                                        variant="h6"
+                                        sx={{
+                                            fontSize: { xs: '1rem', md: '1.25rem' },
+                                            mb: 1,
+                                            minHeight: '2.5em', // Minimum height for title
+                                            display: '-webkit-box',
+                                            WebkitLineClamp: 2,
+                                            WebkitBoxOrient: 'vertical',
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis'
+                                        }}
+                                    >
+                                        {product.name}
+                                    </Typography>
+                                    <Typography
+                                        color="text.secondary"
+                                        sx={{
+                                            mb: 1,
+                                            fontSize: { xs: '0.875rem', md: '1rem' }
+                                        }}
+                                    >
+                                        Rs. {product.price}
+                                    </Typography>
+                                    <Typography
+                                        color="text.secondary"
+                                        sx={{
+                                            fontSize: { xs: '0.875rem', md: '0.875rem' }
+                                        }}
+                                    >
+                                        Size {product.size || 'N/A'}
+                                    </Typography>
+                                </Box>
                                 <Button
-                                    sx={{
-                                        mt: { xs: 1, sm: 2, md: 2 },
-                                        mt: 'auto',
-                                        mx: 'auto',
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        minWidth: { xs: '120px', sm: '150px' },
-                                        fontSize: { xs: '0.780rem', sm: '1rem', md: '1rem', lg: '1rem' },
-                                        padding: { xs: '6px 12px', sm: '8px 16px' },
-                                    }}
                                     variant="contained"
                                     onClick={() => handleAddToCart(product)}
                                     startIcon={<ShoppingCart />}
+                                    sx={{
+                                        width: '100%',
+                                        py: 1,
+                                        mt: 2
+                                    }}
                                 >
                                     Add to Cart
                                 </Button>
@@ -213,12 +203,12 @@ const ProductSlider = () => {
                     sx={{
                         position: 'absolute',
                         top: '50%',
-                        left: { xs: '0px', sm: '10px' },
+                        left: { xs: 0, md: 2 },
                         transform: 'translateY(-50%)',
-                        backgroundColor: 'white',
-                        zIndex: 1,
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                         '&:hover': {
-                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            backgroundColor: 'rgba(255, 255, 255, 1)',
                         },
                     }}
                 >
@@ -230,12 +220,12 @@ const ProductSlider = () => {
                     sx={{
                         position: 'absolute',
                         top: '50%',
-                        right: { xs: '0px', sm: '10px' },
+                        right: { xs: 0, md: 2 },
                         transform: 'translateY(-50%)',
-                        backgroundColor: 'white',
-                        zIndex: 1,
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                         '&:hover': {
-                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            backgroundColor: 'rgba(255, 255, 255, 1)',
                         },
                     }}
                 >

@@ -16,27 +16,27 @@ import SpaRoundedIcon from '@mui/icons-material/SpaRounded';
 const items = [
   {
     icon: <LocalFloristRoundedIcon />,
-    title: 'Exquisite Scents',
+    title: 'Pure & Natural Oils',
     description:
-      'Explore our curated collection of fragrances, crafted to evoke emotions and leave a lasting impression.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoYYEOZBjTUOhIAX18AUUDySsB9B2P-l3h_g&s'}")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/fragrance-dark1.jpg")`,
+      'Explore our collection of pure and natural oils, carefully extracted to retain their therapeutic properties and benefits.',
+    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-light1.jpg")`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-dark1.jpg")`,
   },
   {
     icon: <PaletteRoundedIcon />,
     title: 'Custom Blends',
     description:
-      'Personalize your scent with our custom fragrance blending service for a truly unique experience.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://liraimportltd.com/wp-content/uploads/2023/07/Fragnance-Mist-Pure-Seduction.jpg'}")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/fragrance-dark2.jpg")`,
+      'Create your own custom oil blends tailored to your needs, whether for aromatherapy, skincare, or massage.',
+    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-light2.jpg")`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-dark2.jpg")`,
   },
   {
     icon: <SpaRoundedIcon />,
     title: 'Eco-Friendly Packaging',
     description:
-      'Our fragrances come in sustainable, eco-friendly packaging to help preserve the environment.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://shopatshams.com.pk/cdn/shop/files/www.shopatshams.com.pk_e0034e20-5323-4f47-9d28-e9ccf83c2dae.png?v=1721373813'}")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/fragrance-dark3.jpg")`,
+      'Our oils come in sustainable, eco-friendly packaging to minimize environmental impact and promote a greener future.',
+    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-light3.jpg")`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-dark3.jpg")`,
   },
 ];
 
@@ -157,13 +157,13 @@ export default function Features() {
           gutterBottom
           sx={{ color: 'text.primary' }}
         >
-          Fragrance Features
+          Oil Features
         </Typography>
         <Typography
           variant="body1"
           sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
         >
-          Discover what makes our fragrances stand out. From unique scents to sustainable practices, we offer an unparalleled experience.
+          Discover what makes our oils stand out. From pure and natural extracts to sustainable practices, we offer an unparalleled experience.
         </Typography>
       </Box>
       <Box

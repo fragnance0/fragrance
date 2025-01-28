@@ -8,7 +8,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function FragranceFAQs() {
+export default function OilFAQs() {
   const [expanded, setExpanded] = React.useState([]);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -19,10 +19,10 @@ export default function FragranceFAQs() {
 
   return (
     <Container
-      id="fragrance-faqs"
+      id="oil-faqs"
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
+        pt: { xs: 2, sm: 6 },
+        pb: { xs: 4, sm: 16 },
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
@@ -39,7 +39,7 @@ export default function FragranceFAQs() {
           textAlign: { sm: 'left', md: 'center' },
         }}
       >
-        Fragrance FAQs
+        Oil FAQs
       </Typography>
       <Box sx={{ width: '100%' }}>
         <Accordion
@@ -52,7 +52,7 @@ export default function FragranceFAQs() {
             id="panel1d-header"
           >
             <Typography component="h3" variant="subtitle2">
-              How should I store my fragrances to maintain their quality?
+              How should I store my oils to maintain their quality?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -61,7 +61,7 @@ export default function FragranceFAQs() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              Store your fragrances in a cool, dry place away from direct sunlight and extreme temperatures. Keeping them in their original packaging or a dark cabinet helps preserve their scent profile.
+              Store your oils in a cool, dark place away from direct sunlight and heat sources. Keeping them in airtight containers helps preserve their quality and prevent oxidation.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -75,7 +75,7 @@ export default function FragranceFAQs() {
             id="panel2d-header"
           >
             <Typography component="h3" variant="subtitle2">
-              What is the difference between Eau de Parfum and Eau de Toilette?
+              What is the difference between essential oils and carrier oils?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -84,7 +84,7 @@ export default function FragranceFAQs() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              Eau de Parfum (EDP) contains a higher concentration of fragrance oils (15-20%), making it last longer, while Eau de Toilette (EDT) has a lighter concentration (5-15%), offering a more subtle scent.
+              Essential oils are highly concentrated plant extracts used for their aromatic and therapeutic properties, while carrier oils are used to dilute essential oils and are typically derived from nuts or seeds.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -98,7 +98,7 @@ export default function FragranceFAQs() {
             id="panel3d-header"
           >
             <Typography component="h3" variant="subtitle2">
-              Can fragrances expire, and how can I tell if they have?
+              Can oils expire, and how can I tell if they have?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -107,7 +107,7 @@ export default function FragranceFAQs() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              Yes, fragrances can expire. Signs include a change in color, a sour or off smell, or reduced longevity. Proper storage can extend their shelf life.
+              Yes, oils can expire. Signs include a rancid smell, a change in color, or a thicker, cloudy consistency. Proper storage can extend their shelf life.
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -121,7 +121,7 @@ export default function FragranceFAQs() {
             id="panel4d-header"
           >
             <Typography component="h3" variant="subtitle2">
-              What is the best way to apply fragrance for long-lasting effect?
+              What is the best way to use essential oils for aromatherapy?
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
@@ -130,7 +130,7 @@ export default function FragranceFAQs() {
               gutterBottom
               sx={{ maxWidth: { sm: '100%', md: '70%' } }}
             >
-              Apply fragrance to pulse points like wrists, neck, and behind the ears. These areas emit heat, which helps to diffuse the scent. Avoid rubbing the fragrance into your skin as it can alter the scent.
+              Essential oils can be used in diffusers, added to bathwater, or diluted with a carrier oil for topical application. Always follow recommended dilution ratios and usage guidelines.
             </Typography>
           </AccordionDetails>
         </Accordion>

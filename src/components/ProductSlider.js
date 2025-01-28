@@ -17,6 +17,7 @@ import { surfacesCustomizations } from '../shared-theme/customizations/surfaces'
 import { createTheme } from '@mui/material/styles';
 import CartDialog from './Cart';
 import { useCart } from '../CartContext';
+import '../App.css';
 
 const ProductSlider = () => {
     const [products, setProducts] = useState([]);
@@ -82,7 +83,7 @@ const ProductSlider = () => {
         );
     };
 
-    const cardWidth = 100 / visibleCards;
+    const cardWidth = 96 / visibleCards;
 
     return (
         <Box sx={{
@@ -96,20 +97,27 @@ const ProductSlider = () => {
             <Typography
                 variant="h2"
                 sx={{
-                    mb: 3,
+                    mb: 5,
+                    mt: 3,
                     fontSize: { xs: '1.5rem', md: '2rem' },
                     fontFamily: "sans-serif",
-                    textAlign: "center"
+                    textAlign: "center",
+                    animation: 'fadeInSlideUp 1s ease-out', // Apply the animation
+                    animationFillMode: 'forwards', // Keep the final state after animation
+                    background: 'linear-gradient(45deg, #FF0080, #7928CA)', // Gradient text
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)', // Subtle shadow
                 }}
             >
                 Our Latest Products
             </Typography>
-
             <Box sx={{ position: 'relative' }}>
                 <Box
                     sx={{
                         display: 'flex',
                         mx: -1,
+                        gap: 2,
                         transition: 'transform 0.5s ease-in-out',
                         transform: `translateX(-${currentIndex * cardWidth}%)`,
                     }}
@@ -120,24 +128,72 @@ const ProductSlider = () => {
                             sx={{
                                 flex: `0 0 ${cardWidth}%`,
                                 boxSizing: 'border-box',
-                                // mx: 1,
                                 borderRadius: 2,
-                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                height: '480px' // Fixed height for all cards
+                                height: '480px',
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                '&:hover': {
+                                    transform: 'scale(1.02)', // Slightly scale up on hover
+                                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)', // Deeper shadow on hover
+                                },
                             }}
                         >
-                            <CardMedia
-                                component="img"
-                                image={product.image}
-                                alt={product.name}
-                                height="240"
-                                sx={{
-                                    // height: '240px',
-                                    // objectFit: 'cover'
-                                }}
-                            />
+                            <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+                                <CardMedia
+                                    component="img"
+                                    image={product.image}
+                                    alt={product.name}
+                                    sx={{
+                                        height: '240px',
+                                        borderRadius: 2,
+                                        objectFit: 'cover',
+                                        transition: 'transform 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'scale(1.1)', // Zoom in slightly on hover
+                                        },
+                                    }}
+                                />
+                                {/* Save Tag */}
+                                <Box
+                                    sx={{
+                                        position: 'absolute',
+                                        top: 10,
+                                        left: 8,
+                                        backgroundColor: 'red',
+                                        color: 'white',
+                                        borderRadius: 10,
+                                        width: '100px',
+                                        height: '30px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '0.75rem',
+                                        fontWeight: 'bold',
+                                        boxShadow: '0 0 8px rgba(255, 0, 0, 0.8)', // Glowing effect
+                                        transition: 'transform 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'scale(1.1)', // Slightly scale up on hover
+                                        },
+                                    }}
+                                >
+                                    {`Save Rs.${product.originalPrice - product.price}`}
+                                </Box>
+
+                                {/* Gradient Overlay */}
+                                <Box
+                                    sx={{
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5))',
+                                    }}
+                                />
+
+                            </Box>
                             <CardContent sx={{
                                 textAlign: 'center',
                                 p: 2,
@@ -152,7 +208,7 @@ const ProductSlider = () => {
                                         variant="h6"
                                         sx={{
                                             fontSize: { xs: '1rem', md: '1.25rem' },
-                                            mb: 1,
+                                            // mb: 1,
                                             minHeight: '2.5em', // Minimum height for title
                                             display: '-webkit-box',
                                             WebkitLineClamp: 2,
@@ -167,10 +223,21 @@ const ProductSlider = () => {
                                         color="text.secondary"
                                         sx={{
                                             mb: 1,
-                                            fontSize: { xs: '0.875rem', md: '1rem' }
+                                            mt: 1,
+                                            fontSize: { xs: '0.875rem', md: '1rem' },
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            textAlign: 'center',
+                                            gap: 1,
                                         }}
                                     >
-                                        Rs. {product.price}
+                                        <Box component="span" sx={{ textDecoration: 'line-through', color: 'text.disabled' }}>
+                                            Rs. {product.originalPrice}
+                                        </Box>
+                                        <Box component="span" sx={{ color: 'error.main', fontWeight: 'bold' }}>
+                                            Rs. {product.price}
+                                        </Box>
                                     </Typography>
                                     <Typography
                                         color="text.secondary"
@@ -188,12 +255,20 @@ const ProductSlider = () => {
                                     sx={{
                                         width: '100%',
                                         py: 1,
-                                        mt: 2
+                                        mt: 2,
+                                        mb: 1,
+                                        // background: 'linear-gradient(45deg, #FF0080, #7928CA)',
+                                        color: 'white',
+                                        fontWeight: 'bold',
+                                        transition: 'transform 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'translateY(-2px)', // Slight lift on hover
+                                            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                        },
                                     }}
                                 >
                                     Add to Cart
-                                </Button>
-                            </CardContent>
+                                </Button>                            </CardContent>
                         </Card>
                     ))}
                 </Box>

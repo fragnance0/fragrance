@@ -15,14 +15,14 @@ import ProductSlider from './components/ProductSlider';
 import { Element } from 'react-scroll';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Fab from '@mui/material/Fab';
-
+import ReviewsScreen from './components/Reviews';
 export default function MarketingPage(props) {
   React.useEffect(() => {
     localStorage.removeItem('role');
     // localStorage.setItem('role', 'user'); // Store role in local storage
   })
   return (
-    <div>
+    <div style={{ backgroundColor: '#eeefff' }}>
       <CssBaseline enableColorScheme />
       <AppAppBar />
       <Element name="home">
@@ -38,7 +38,8 @@ export default function MarketingPage(props) {
         </Element>
         <Divider />
         <Element name="testimonials">
-          <Testimonials />
+        <ReviewsScreen />
+          {/* <Testimonials /> */}
         </Element>
         <Divider />
         <Element name="faq">

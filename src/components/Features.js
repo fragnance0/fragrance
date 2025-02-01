@@ -10,35 +10,58 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
 import LocalFloristRoundedIcon from '@mui/icons-material/LocalFloristRounded';
-import PaletteRoundedIcon from '@mui/icons-material/PaletteRounded';
 import SpaRoundedIcon from '@mui/icons-material/SpaRounded';
+import HealingRoundedIcon from '@mui/icons-material/HealingRounded';
+import BrushRoundedIcon from '@mui/icons-material/BrushRounded';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import OpacityRoundedIcon from '@mui/icons-material/OpacityRounded';
+import featuresImageLight from '../assets/features.jpeg';
 
 const items = [
   {
-    icon: <LocalFloristRoundedIcon />,
-    title: 'Pure & Natural Oils',
-    description:
-      'Explore our collection of pure and natural oils, carefully extracted to retain their therapeutic properties and benefits.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-light1.jpg")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-dark1.jpg")`,
-  },
-  {
-    icon: <PaletteRoundedIcon />,
-    title: 'Custom Blends',
-    description:
-      'Create your own custom oil blends tailored to your needs, whether for aromatherapy, skincare, or massage.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-light2.jpg")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-dark2.jpg")`,
-  },
-  {
     icon: <SpaRoundedIcon />,
-    title: 'Eco-Friendly Packaging',
-    description:
-      'Our oils come in sustainable, eco-friendly packaging to minimize environmental impact and promote a greener future.',
-    imageLight: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-light3.jpg")`,
-    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || 'https://example.com'}/images/oil-dark3.jpg")`,
+    title: 'Boost Hair Growth',
+    description: 'Enhance your hair growth naturally with a unique blend of herbal ingredients for thick and healthy hair.',
+    imageLight: `url(${featuresImageLight})`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || '../assets'}/features-dark.jpg")`,
+  },
+  {
+    icon: <LocalFloristRoundedIcon />,
+    title: 'Soft & Shiny Hair',
+    description: 'Nourish your hair for a silky, shiny texture that stands out with natural herbal goodness.',
+    imageLight: `url(${featuresImageLight})`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || '../assets'}/featuresark.jpg")`,
+  },
+  {
+    icon: <HealingRoundedIcon />,
+    title: 'Reduces Hair Fall',
+    description: 'Strengthen your hair roots to minimize hair fall with the power of herbal oils.',
+    imageLight: `url(${featuresImageLight})`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || '../assets'}/featuresll-dark.jpg")`,
+  },
+  {
+    icon: <BrushRoundedIcon />,
+    title: 'Repairs Damage',
+    description: 'Repair damaged hair and restore its natural vitality with our carefully crafted herbal formula.',
+    imageLight: `url(${featuresImageLight})`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || '../assets'}/features.jpg")`,
+  },
+  {
+    icon: <FavoriteRoundedIcon />,
+    title: 'Controls Dandruff',
+    description: 'Say goodbye to dandruff with our herbal oil that soothes and balances your scalp.',
+    imageLight: `url(${featuresImageLight})`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || '../assets'}/featuresff-dark.jpg")`,
+  },
+  {
+    icon: <OpacityRoundedIcon />,
+    title: 'Removes Frizz',
+    description: 'Tame unruly frizz and get smooth, manageable hair with the nourishing power of herbs.',
+    imageLight: `url(${featuresImageLight})`,
+    imageDark: `url("${process.env.TEMPLATE_IMAGE_URL || '../assets'}/featuresdark.jpg")`,
   },
 ];
+
 
 const Chip = styled(MuiChip)(({ theme }) => ({
   variants: [
@@ -92,7 +115,7 @@ function MobileLayout({ selectedItemIndex, handleItemClick, selectedFeature }) {
             width: '100%', // Ensure it spans its container
             maxWidth: 300, // Optional: restrict maximum width
             height: 280, // Explicit height
-            backgroundSize: 'cover', // Ensure it covers the container
+            backgroundSize: 'contain', // Ensure it covers the container
             backgroundPosition: 'center', // Center the image
             backgroundRepeat: 'no-repeat', // Prevent repetition
             backgroundImage: 'var(--items-imageLight)',
@@ -112,7 +135,7 @@ function MobileLayout({ selectedItemIndex, handleItemClick, selectedFeature }) {
         <Box sx={{ px: 2, pb: 2 }}>
           <Typography
             gutterBottom
-            sx={{ color: 'text.primary', fontWeight: 'medium' }}
+            sx={{ color: 'text.primary', fontWeight: 'bold', mt: 2 }}
           >
             {selectedFeature.title}
           </Typography>
@@ -178,7 +201,7 @@ export default function Features() {
             sx={{
               display: { xs: 'none', sm: 'flex' },
               flexDirection: 'column',
-              gap: 2,
+              gap: 1,
               height: '100%',
             }}
           >
@@ -193,11 +216,14 @@ export default function Features() {
                     height: '100%',
                     width: '100%',
                     '&:hover': {
-                      backgroundColor: (theme.vars || theme).palette.action.hover,
+                      backgroundColor: 'selected.main',
                     },
                   }),
                   selectedItemIndex === index && {
-                    backgroundColor: 'action.selected',
+                    backgroundColor: '#fff',
+                    '&:hover': {
+                      backgroundColor: selectedItemIndex === index && '#fff',
+                    }
                   },
                 ]}
               >
@@ -208,7 +234,7 @@ export default function Features() {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'left',
-                      gap: 1,
+                      gap: 0,
                       textAlign: 'left',
                       textTransform: 'none',
                       color: 'text.secondary',
@@ -235,8 +261,8 @@ export default function Features() {
         <Box
           sx={{
             display: { xs: 'none', sm: 'flex' },
-            width: { xs: '100%', md: '70%' },
-            height: 'var(--items-image-height)',
+            width: { xs: '100%', md: '100%' },
+            height: { xs: 'auto', md: 'auto' },
           }}
         >
           <Card
@@ -250,11 +276,9 @@ export default function Features() {
           >
             <Box
               sx={(theme) => ({
-                m: 'auto',
                 width: '100%', // Ensure it spans its container
-                maxWidth: 420, // Optional: restrict maximum width
-                height: 500, // Explicit height
-                backgroundSize: 'cover', // Ensure it covers the container
+                height: "100%", // Explicit height
+                backgroundSize: 'contain', // Ensure it covers the container
                 backgroundPosition: 'center', // Center the image
                 backgroundRepeat: 'no-repeat', // Prevent repetition
                 backgroundImage: 'var(--items-imageLight)',

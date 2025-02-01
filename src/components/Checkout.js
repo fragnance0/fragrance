@@ -17,7 +17,7 @@ import {
 import { useCart } from "../CartContext";
 import { saveOrderToRTDB } from "../api/fb_functions";
 import { remove, set } from "firebase/database";
-import Sitemark from './SitemarkIcon';
+import Sitemark from '../assets/logo1.jpeg';
 
 const CheckoutPage = () => {
     const { cart } = useCart();
@@ -106,12 +106,22 @@ const CheckoutPage = () => {
                     bgcolor: '#fff',
                     backgroundImage: 'none',
                     transition: (theme) => theme.transitions.create(['margin-top'], {
-                      duration: 200,
+                        duration: 200,
                     }),
-                  }}            
+                }}
             >
                 <Toolbar sx={{ justifyContent: "center" }}>
-                    <Sitemark />
+                    <Box
+                        component="img"
+                        src={Sitemark}
+                        alt="Sitemark"
+                        sx={{
+                            height: 40,
+                            width: 90,
+                            borderRadius: 1,
+                            mr: { xs: 0, sm: 4 },
+                        }}
+                    />
                 </Toolbar>
             </AppBar>
             <Grid container sx={{ padding: 4, marginTop: 6, border: '1px solid', borderColor: 'divider', borderRadius: '0.5rem' }} spacing={4}>

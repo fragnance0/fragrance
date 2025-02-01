@@ -11,8 +11,10 @@ import {
   CardMedia,
 } from '@mui/material';
 import { addProductToRTDB } from '../api/fb_functions';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [product, setProduct] = useState({
     name: '',
@@ -61,6 +63,16 @@ const AddProduct = () => {
 
   return (
     <Container sx={{ marginTop: 5 }}>
+      <Grid item xs={12} sx={{ textAlign: 'right' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate('/admin/all-product')}
+        >
+          View All Products
+        </Button>
+      </Grid>
+
       <Grid container spacing={2}>
         {/* Form Section */}
         <Grid item xs={12} md={6}>

@@ -17,6 +17,7 @@ import ShippedOrderList from './Admin/ShippedOrders';
 import DeliveredOrdersScreen from './Admin/DeliveredOrders';
 import ReturnedOrdersScreen from './Admin/ReturnedOrders';
 import SignIn from './Admin/Signin';
+import AllProducts from './Admin/AllProducts';
 
 const AppRoutes = (props) => {
     return (
@@ -46,6 +47,16 @@ const AppRoutes = (props) => {
                             <ProtectedRoute requiredRole="admin">
                                 <AdminLayout>
                                     <AddProduct />
+                                </AdminLayout>
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/all-product"
+                        element={
+                            <ProtectedRoute requiredRole="admin">
+                                <AdminLayout>
+                                    <AllProducts />
                                 </AdminLayout>
                             </ProtectedRoute>
                         }

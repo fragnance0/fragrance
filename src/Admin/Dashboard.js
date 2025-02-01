@@ -1,11 +1,36 @@
 import React from "react";
-import { Grid, Paper, Typography, Box } from "@mui/material";
+import { Grid, Paper, Typography, Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { InventoryOutlined, LocalShipping, AssignmentReturnOutlined } from "@mui/icons-material";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const dataCards = [
-    { title: "Total Products", value: 120, color: "#3f51b5" },
-    { title: "Total Orders", value: 450, color: "#4caf50" },
-    { title: "Revenue", value: "$12,340", color: "#ff9800" },
+    {
+      title: "All Products",
+      icon: <InventoryOutlined />,
+      route: "/admin/all-product",
+    },
+    {
+      title: "Orders",
+      icon: <LocalShipping />,
+      route: "/admin/orders",
+    },
+    {
+      title: "Shipped Orders",
+      icon: <AssignmentReturnOutlined />,
+      route: "/admin/shipped-orders",
+    },
+    {
+      title: "Delivered Orders",
+      icon: <AssignmentReturnOutlined />,
+      route: "/admin/delivered-orders",
+    },
+    {
+      title: "Returned Orders",
+      icon: <AssignmentReturnOutlined />,
+      route: "/admin/returned-orders",
+    },
   ];
 
   return (
@@ -16,13 +41,21 @@ const Dashboard = () => {
       <Grid container spacing={3}>
         {dataCards.map((card) => (
           <Grid item xs={12} sm={6} md={4} key={card.title}>
-            <Paper
+            <Button
+              onClick={() => navigate(card.route)}
               sx={{
-                padding: 3,
+                padding: 5,
                 textAlign: "center",
-                backgroundColor: card.color,
+                backgroundColor: '#000',
                 color: "#fff",
+                width: "100%",
                 borderRadius: 2,
+
+                '&:hover': {
+                  backgroundColor: '#fff',
+                  color: '#000',
+                  border: '1px solid #000'
+                }
               }}
             >
               <Typography variant="h6" fontWeight="bold">
@@ -31,7 +64,7 @@ const Dashboard = () => {
               <Typography variant="h4" mt={1}>
                 {card.value}
               </Typography>
-            </Paper>
+            </Button>
           </Grid>
         ))}
       </Grid>

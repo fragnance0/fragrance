@@ -52,7 +52,8 @@ export default function Hero() {
         margin: 0, // Ensure no margins
         padding: 0, // Ensure no padding
         [theme.breakpoints.down("sm")]: {
-          // backgroundSize: "contain", // Ensures the image scales down for smaller screens
+          backgroundSize: "contain", // Ensures the image scales down for smaller screens
+      
         },
       })}
     >

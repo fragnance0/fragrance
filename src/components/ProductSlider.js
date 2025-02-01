@@ -250,6 +250,7 @@ const ProductSlider = () => {
                                 </Box>
                                 <Button
                                     variant="contained"
+                                    color='primary'
                                     onClick={() => handleAddToCart(product)}
                                     startIcon={<ShoppingCart />}
                                     sx={{

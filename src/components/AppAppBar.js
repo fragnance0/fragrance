@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 import CartDialog from './Cart';
 import { useCart } from '../CartContext';
 import { Link } from 'react-scroll';
+import SitemarkIcon from '../assets/logo1.jpeg';
 
 const StyledToolbar = styled(Toolbar)(({ theme, scrolled }) => ({
   display: 'flex',
@@ -87,7 +88,17 @@ export default function AppAppBar() {
         <StyledToolbar variant="dense" scrolled={scrolled}>
           {/* Rest of your existing toolbar content */}
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
-            <Sitemark />
+            <Box
+              component="img"
+              src={SitemarkIcon}
+              alt="Sitemark"
+              sx={{
+                height: 40,
+                width: 90,
+                borderRadius: 1,
+                mr: { xs: 0, sm: 4 },
+              }}
+            />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Link to="home" smooth={true} duration={500} offset={-70}>
                 <Button variant="text" color="info" size="small">Home</Button>
